@@ -1,7 +1,7 @@
 {
-  "name": "Project 3",
+  "name": "jiskefet-notifications",
   "version": "0.1.0",
-  "description": "A project",
+  "description": "Proof of concept for jiskefet notifications",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
