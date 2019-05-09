@@ -6,6 +6,10 @@ import {
   updateNotifIcon
 } from './helper.js'
 
+import {
+  ls
+} from './localStorage.js'
+
 const socket = io()
 const notification = document.getElementById('notification')
 const notifications = document.getElementById('notifications')
@@ -14,6 +18,8 @@ const notifIcon = document.querySelector('.button--navigation')
 const closeNotifs = document.querySelector('.close-notifications')
 let notifCount = 0
 let timeOut
+
+if ('localStorage' in window) checkNotifications()
 
 socket.on('notification update', data => {
   if (!notifications.classList.contains('showNotif')) {
@@ -34,11 +40,17 @@ socket.on('notification update', data => {
 
   if (document.querySelector('.empty-state')) document.querySelector('.empty-state').remove()
 
-  notificationsWrapper.innerHTML += newBigNotification(data)
+  // notificationsWrapper.innerHTML += newBigNotification(data)
+
+  notificationsWrapper.insertBefore(newBigNotification(data), document.querySelector('.notification:first-of-type'))
+  document.querySelector('.button--delete-notification').addEventListener('click', deleteNotification)
+
+  ls.addNotification(data)
 })
 
 notifIcon.addEventListener('click', showNotifications)
 closeNotifs.addEventListener('click', hideNotifications)
+document.querySelector('.button--delete-notifications').addEventListener('click', emptyState)
 
 function showNotifications () {
   document.querySelector('.container-fluid').style.position = 'fixed'
@@ -54,7 +66,6 @@ function showNotifications () {
 }
 
 function hideNotifications () {
-  console.log('kek')
   document.querySelector('.container-fluid').style.position = 'static'
 
   notifications.classList.remove('showNotif')
@@ -71,4 +82,43 @@ function hideSingleNotif () {
   notifCount++
 
   updateNotifIcon(notifIcon, notifCount)
+}
+
+function deleteNotification (e) {
+  if (e.path[2].classList.contains('notification')) {
+    ls.updateNotifications(e.path[2])
+    e.path[2].remove()
+  } else {
+    ls.updateNotifications(e.path[3])
+    e.path[3].remove()
+  }
+
+  if (notificationsWrapper.innerHTML.trim().length === 0) {
+    emptyState()
+  }
+}
+
+function emptyState () {
+  notificationsWrapper.innerHTML = '<p class="empty-state">You don\'t have any notifications</p>'
+
+  ls.clearNotifications()
+
+  notifCount = 0
+  updateNotifIcon(notifIcon, notifCount)
+}
+
+function checkNotifications () {
+  let previousNotifications = ls.retrieveNotifications()
+
+  if (previousNotifications) {
+    document.querySelector('.empty-state').remove()
+
+    previousNotifications = previousNotifications.reverse()
+
+    previousNotifications.forEach(notification => {
+      notificationsWrapper.insertBefore(newBigNotification(notification), document.querySelector('.notification:first-of-type'))
+
+      document.querySelector('.button--delete-notification').addEventListener('click', deleteNotification)
+    })
+  }
 }

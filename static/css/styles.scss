@@ -108,6 +108,11 @@ $yellow: #ffc107;
   }
 }
 
+.notification {
+  border-bottom: 1px solid #ced4da;
+  margin-bottom: 16px;
+}
+
 #notifications {
   position: absolute;
   z-index: 1;
@@ -115,6 +120,7 @@ $yellow: #ffc107;
   top: 14px;
   overflow: scroll;
   min-width: 300px;
+  max-width: 450px;
   height: 100%;
   background-color: #fff;
   border-left: 1px solid #ced4da;
@@ -161,6 +167,9 @@ $yellow: #ffc107;
   background-color: $blue !important;
 }
 
+.houston {
+  background-color: #ff3232 !important;
+}
 
 
 

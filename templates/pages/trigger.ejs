@@ -8,20 +8,39 @@
   button {
     border: none;
     font-size: 1rem;
-    padding: 1.5rem 2rem;
-    background-color: #00315e;
+    padding: 2rem;
+    background-color: #ffc107;
     color: #fff;
     margin: auto;
     display: block;
     transition: 0.2s;
+    width: 100%;
+    margin: 1em 0;
+    color: #000;
   }
 
   button:hover {
     cursor: pointer;
     background-color: #00427f;
   }
+
+  #trigger-new-comment {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  #trigger-houston {
+    background-color: #ff3232;
+    color: #fff;
+  }
 </style>
 
-<button id="trigger-notification" type="button" name="button">Trigger notification</button>
+<button id="trigger-run-start" type="button" name="button">Trigger the <strong>start</strong> of a run</button>
+<button id="trigger-run-end" type="button" name="button">Trigger the <strong>end</strong> of a run</button>
+
+<button id="trigger-new-comment" type="button" name="button">Trigger a new comment</button>
+
+<button id="trigger-houston" type="button" name="button">Trigger Houston</button>
+
 
 <% include ../partials/tail %>
