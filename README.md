@@ -6,6 +6,7 @@ This project is a proof of concept with working notifications for the Jiskefet b
 ## Table of contents
 * [Concept](#concept)
 * [Installation](#installation)
+* [Design decisions](#design-decisions)
 * [Usage](#usage)
 
 ## Concept
