@@ -35,6 +35,12 @@ If the user clicks the bell icon, the notification area will slide out and the u
 ### localStorage
 I've also added the user of localStorage to save the current notifications between page reloads.
 
+## Design decisions
+I chose to go with a traditional slide out widget area because one of the requirements was that a user wouldn't need to permanently give up screen real estate for notifications.
+
+I also chose to show a notification count icon only when a user hasn't interacted with the notification to reduce visual load.
+Still, all notifications will be visible in the notification area until the user removes them from there. This prevents removing a notification by accident if you initially close them on receiving.
+
 ## Installation
 Enter the following commands in your terminal:
 ```sh
