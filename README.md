@@ -3,6 +3,13 @@
 
 This project is a proof of concept with working notifications for the Jiskefet bookkeeping system. Check the demo [here](https://jiskefet-notifications.herokuapp.com/).
 
+Bonus: it's also responsive.
+
+| Responsive notification | Responsive notifications tab |
+| --- | --- |
+| ![responsive notifications](bin/responsive-notification.png) | ![responsive notifications](bin/responsive-notifications.png) |
+
+
 ## Table of contents
 * [Concept](#concept)
 * [Installation](#installation)
